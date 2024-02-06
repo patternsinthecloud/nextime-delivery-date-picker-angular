@@ -81,7 +81,31 @@
           class="p-8 bg-gray-100 dark:bg-gray-800 flex flex-col lg:w-full xl:w-2/5"
         >
           <div class="d-flex justify-center mb-4">
-            <qpilot-delivery-date></qpilot-delivery-date>
+            <qpilot-delivery-date
+              shippingDetails='{
+              "OrderId": 11493,
+              "shippingAddress": {
+                  "street": "100 Congress Avenue",
+                  "city": "Austin",
+                  "state": "TX",
+                  "country": "US",
+                  "postalCode": "78767"
+              },
+              "items": [
+                  {
+                      "id": 41597,
+                      "productId": "11033",
+                      "qty": 1,
+                      "regularPrice": 38.00,
+                      "salePrice": 36.10
+                  }
+              ],
+              "shippingOptionFilters": {
+                  "minDeliveryDate": "2024-02-05",
+                  "maxDeliveryDate": "2024-04-05"
+              }
+          }'
+            ></qpilot-delivery-date>
           </div>
 
           <button
