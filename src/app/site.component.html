@@ -80,30 +80,41 @@
         <div
           class="p-8 bg-gray-100 dark:bg-gray-800 flex flex-col lg:w-full xl:w-2/5"
         >
+          <!-- (change)="updateAddress($event)" -->
+          <label>Select Address</label>
+          <select [(ngModel)]="selectedAddress">
+            <option *ngFor="let address of addresses" [ngValue]="address">
+              {{ address.name || "Address" }}
+            </option>
+          </select>
+          <!-- (change)="updateOrder($event)" -->
+          <label>Select Order</label>
+          <select [(ngModel)]="selectedOrder">
+            <option *ngFor="let order of orders" [ngValue]="order">
+              Order {{ order.OrderId }}
+            </option>
+          </select>
+          <label>Select Delivery Date</label>
+
+          <!-- (change)="updateDeliveryDate($event.target.value)" -->
+          <select [(ngModel)]="selectedDeliveryDate">
+            <option *ngFor="let date of deliveryDates" [value]="date">
+              {{ date }}
+            </option>
+          </select>
+
           <div class="d-flex justify-center mb-4">
             <qpilot-delivery-date
-              *ngIf="siteId"
-              deliveryDate="2024-2-10"
-              siteId="{{ siteId }}"
-              shippingDetails='{
-          "OrderId": 11493,
-          "shippingAddress": {
-              "street": "100 Congress Avenue",
-              "city": "Austin",
-              "state": "TX",
-              "country": "US",
-              "postalCode": "78767"
-          },
-          "items": [
-              {
-                  "id": 41597,
-                  "productId": "11033",
-                  "qty": 1,
-                  "regularPrice": 38.00,
-                  "salePrice": 36.10
-              }
-          ]
-      }'
+              *ngIf="
+                selectedDeliveryDate &&
+                siteId &&
+                selectedAddress &&
+                selectedOrder
+              "
+              [deliveryDate]="selectedDeliveryDate | json"
+              [siteId]="siteId"
+              [shippingAddress]="selectedAddress | json"
+              [order]="selectedOrder | json"
             ></qpilot-delivery-date>
           </div>
 
