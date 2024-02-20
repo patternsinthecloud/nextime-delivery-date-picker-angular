@@ -1,0 +1,723 @@
+<div
+  class="FullyRootedDemoScreen"
+  style="width: 1920px; height: 1080px; position: relative; background: white"
+>
+  <div
+    class="MySubscriptionBox"
+    style="
+      left: 87px;
+      top: 68px;
+      position: absolute;
+      color: black;
+      font-size: 32px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    My Subscription Box:
+  </div>
+  <div
+    class="WidgetsSection"
+    style="
+      width: 500px;
+      height: 184px;
+      left: 1332px;
+      top: 434px;
+      position: absolute;
+      background: #f3f4f6;
+    "
+  ></div>
+  <div
+    class="InfoSection"
+    style="
+      width: 1213px;
+      height: 177px;
+      left: 87px;
+      top: 162px;
+      position: absolute;
+      background: white;
+      border: 1px black solid;
+    "
+  ></div>
+  <div
+    class="AndDeliveredTo10SimsAvenueOnWednesdayFebruary28th"
+    style="
+      width: 1089px;
+      height: 33px;
+      left: 121px;
+      top: 243px;
+      position: absolute;
+    "
+  >
+    <span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+      "
+      >and delivered to </span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 700;
+        word-wrap: break-word;
+      "
+      >10 Sims Avenue on</span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+      "
+    >
+    </span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 700;
+        word-wrap: break-word;
+      "
+      >Wednesday, February 28th</span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+      "
+      >.</span
+    >
+  </div>
+  <div
+    class="YourNextOrderWillBeProcessedOn"
+    style="
+      width: 1147px;
+      height: 24px;
+      left: 121px;
+      top: 200px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 500;
+      word-wrap: break-word;
+    "
+  >
+    Your next order will be processed on
+  </div>
+  <div
+    class="Group4"
+    style="
+      width: 298px;
+      height: 40px;
+      left: 443px;
+      top: 192px;
+      position: absolute;
+    "
+  >
+    <div
+      class="Rectangle8"
+      style="
+        width: 298px;
+        height: 40px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        background: white;
+      "
+    ></div>
+    <select
+      style="
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px #d9d9d9 solid;
+      "
+      [(ngModel)]="selectedDeliveryDate"
+    >
+      <option *ngFor="let date of deliveryDates" [value]="date">
+        {{ date }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="Group5"
+    style="
+      width: 298px;
+      height: 40px;
+      left: 432px;
+      top: 68px;
+      position: absolute;
+    "
+  >
+    <div
+      class="Rectangle8"
+      style="
+        width: 298px;
+        height: 40px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        background: white;
+      "
+    ></div>
+
+    <select
+      style="
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px #d9d9d9 solid;
+      "
+      [(ngModel)]="selectedOrder"
+    >
+      <option *ngFor="let order of orders" [ngValue]="order">
+        {{ order.OrderId }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="PleaseMakeChangesToYourNextOrderBeforeMonday1159pmForWednesdayDelivery"
+    style="left: 121px; top: 284px; position: absolute"
+  >
+    <span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+      "
+      >Please make changes to your next order </span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 700;
+        word-wrap: break-word;
+      "
+      >before Monday @ 11:59pm</span
+    ><span
+      style="
+        color: black;
+        font-size: 18px;
+        font-family: Inter;
+        font-weight: 500;
+        word-wrap: break-word;
+      "
+    >
+      for Wednesday Delivery.</span
+    >
+  </div>
+  <div
+    class="Rectangle1"
+    style="
+      width: 500px;
+      height: 80px;
+      left: 1332px;
+      top: 163px;
+      position: absolute;
+      background: black;
+    "
+  ></div>
+  <div
+    class="Skip1Week"
+    style="
+      left: 1529px;
+      top: 192px;
+      position: absolute;
+      color: white;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Skip 1 Week
+  </div>
+  <div
+    class="Rectangle6"
+    style="
+      width: 500px;
+      height: 80px;
+      left: 1332px;
+      top: 259px;
+      position: absolute;
+      background: #f3f4f6;
+    "
+  ></div>
+  <div
+    class="DeliverEvery2Weeks"
+    style="
+      left: 1480px;
+      top: 288px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Deliver Every: 2 Weeks
+  </div>
+  <div
+    class="DeliveryViaHomeDelivery"
+    style="left: 1360px; top: 452px; position: absolute"
+  >
+    <span
+      style="
+        color: black;
+        font-size: 22px;
+        font-family: Inter;
+        font-weight: 700;
+        word-wrap: break-word;
+      "
+      >Delivery via </span
+    ><span
+      style="
+        color: black;
+        font-size: 22px;
+        font-family: Inter;
+        font-weight: 700;
+        text-decoration: underline;
+        word-wrap: break-word;
+      "
+      >Home Delivery</span
+    >
+  </div>
+  <div
+    class="Item"
+    style="
+      left: 91px;
+      top: 407px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Item
+  </div>
+  <div
+    class="Price"
+    style="
+      left: 1033px;
+      top: 407px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Price
+  </div>
+  <div
+    class="Quantity"
+    style="
+      left: 901px;
+      top: 407px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Quantity
+  </div>
+  <div
+    class="Total"
+    style="
+      left: 1231px;
+      top: 407px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Total
+  </div>
+  <img
+    class="Rectangle2"
+    style="
+      width: 120px;
+      height: 120px;
+      left: 87px;
+      top: 470px;
+      position: absolute;
+    "
+    src="assets/images/image2.png"
+  />
+  <img
+    class="Rectangle3"
+    style="
+      width: 80px;
+      height: 80px;
+      left: 127px;
+      top: 610px;
+      position: absolute;
+    "
+    src="assets/images/image.png"
+  />
+  <div
+    class="JuiceCleanseSubscription"
+    style="
+      left: 241px;
+      top: 487px;
+      position: absolute;
+      color: black;
+      font-size: 22px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Juice Cleanse Subscription
+  </div>
+  <div
+    class="Items"
+    style="
+      left: 241px;
+      top: 531px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    3 Items
+  </div>
+  <div
+    class="RitualGreens"
+    style="
+      left: 241px;
+      top: 610px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Ritual Greens
+  </div>
+  <div
+    class="ShipsTo"
+    style="
+      left: 1360px;
+      top: 507px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Ships To:<br />
+  </div>
+  <img
+    class="Rectangle4"
+    style="
+      width: 80px;
+      height: 80px;
+      left: 127px;
+      top: 713px;
+      position: absolute;
+    "
+    src="assets/images/image3.png"
+  />
+  <div
+    class="FromTheEarth"
+    style="
+      left: 241px;
+      top: 713px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    From the Earth
+  </div>
+  <img
+    class="Rectangle5"
+    style="
+      width: 80px;
+      height: 80px;
+      left: 127px;
+      top: 816px;
+      position: absolute;
+    "
+    src="assets/images/image4.png"
+  />
+  <div
+    class="Revive"
+    style="
+      left: 241px;
+      top: 816px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    Revive
+  </div>
+  <div
+    class="1199"
+    style="
+      left: 1033px;
+      top: 610px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $11.99
+  </div>
+  <div
+    class="1049"
+    style="
+      left: 1033px;
+      top: 713px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $10.49
+  </div>
+  <div
+    class="2000"
+    style="
+      left: 1033px;
+      top: 816px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $20.00
+  </div>
+  <div
+    class="1199"
+    style="
+      left: 1210px;
+      top: 610px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $11.99
+  </div>
+  <div
+    class="1049"
+    style="
+      left: 1210px;
+      top: 713px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $10.49
+  </div>
+  <div
+    class="2000"
+    style="
+      left: 1210px;
+      top: 816px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    $20.00
+  </div>
+  <div
+    style="
+      left: 907px;
+      top: 610px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    1
+  </div>
+  <div
+    style="
+      left: 907px;
+      top: 713px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    1
+  </div>
+  <div
+    style="
+      left: 907px;
+      top: 816px;
+      position: absolute;
+      color: black;
+      font-size: 18px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    1
+  </div>
+  <div
+    class="Rectangle7"
+    style="
+      width: 444px;
+      height: 40px;
+      left: 1361px;
+      top: 540px;
+      position: absolute;
+      background: white;
+    "
+  ></div>
+  <select
+    style="
+      left: 1361px;
+      top: 540px;
+      position: absolute;
+      width: 444px;
+      height: 40px;
+    "
+    [(ngModel)]="selectedAddress"
+  >
+    <option *ngFor="let address of addresses" [ngValue]="address">
+      {{ address.name || "Address" }}
+    </option>
+  </select>
+  <div
+    class="Group2"
+    style="
+      width: 21px;
+      height: 10.5px;
+      left: 1767px;
+      top: 295px;
+      position: absolute;
+    "
+  >
+    <div
+      class="Line1"
+      style="
+        width: 14.85px;
+        height: 0px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        transform: rotate(45deg);
+        transform-origin: 0 0;
+        border: 1px black solid;
+      "
+    ></div>
+    <div
+      class="Line2"
+      style="
+        width: 14.85px;
+        height: 0px;
+        left: 21px;
+        top: 0px;
+        position: absolute;
+        transform: rotate(135deg);
+        transform-origin: 0 0;
+        border: 1px black solid;
+      "
+    ></div>
+  </div>
+  <div
+    class="WidgetsSection"
+    style="
+      width: 500px;
+      height: 198px;
+      left: 1332px;
+      top: 646px;
+      position: absolute;
+    "
+  ></div>
+  <div
+    class="NextDeliveryWednesday0228"
+    style="
+      left: 1332px;
+      top: 664px;
+      position: absolute;
+      color: black;
+      font-size: 22px;
+      font-family: Inter;
+      font-weight: 700;
+      word-wrap: break-word;
+    "
+  >
+    <qpilot-delivery-date
+      *ngIf="selectedDeliveryDate && siteId && selectedAddress && selectedOrder"
+      [deliveryDate]="selectedDeliveryDate | json"
+      [siteId]="siteId"
+      [shippingAddress]="selectedAddress | json"
+      [order]="selectedOrder | json"
+    ></qpilot-delivery-date>
+  </div>
+</div>

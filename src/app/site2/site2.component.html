@@ -80,14 +80,12 @@
         <div
           class="p-8 bg-gray-100 dark:bg-gray-800 flex flex-col lg:w-full xl:w-2/5"
         >
-          <!-- (change)="updateAddress($event)" -->
           <label>Select Address</label>
           <select [(ngModel)]="selectedAddress">
             <option *ngFor="let address of addresses" [ngValue]="address">
               {{ address.name || "Address" }}
             </option>
           </select>
-          <!-- (change)="updateOrder($event)" -->
           <label>Select Order</label>
           <select [(ngModel)]="selectedOrder">
             <option *ngFor="let order of orders" [ngValue]="order">
@@ -95,8 +93,6 @@
             </option>
           </select>
           <label>Select Delivery Date</label>
-
-          <!-- (change)="updateDeliveryDate($event.target.value)" -->
           <select [(ngModel)]="selectedDeliveryDate">
             <option *ngFor="let date of deliveryDates" [value]="date">
               {{ date }}

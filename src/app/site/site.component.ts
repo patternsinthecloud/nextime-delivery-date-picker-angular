@@ -30,7 +30,6 @@ interface Order {
   templateUrl: './site.component.html',
 })
 export class SiteComponent {
-  title = 'qpilot-delivery-date-angular';
   siteId: number | undefined;
 
   addresses: Address[] = [
@@ -181,26 +180,21 @@ export class SiteComponent {
 
   updateShippingAddress(address: string) {
     this.selectedAddress = JSON.parse(address);
-    // Update logic for the qpilot delivery date component goes here
   }
 
   updateOrder(order: string) {
     this.selectedOrder = JSON.parse(order);
-    // Update logic for the qpilot delivery date component goes here
   }
 
   updateDeliveryDate(date: string) {
     this.selectedDeliveryDate = date;
-    // Update logic for the qpilot delivery date component goes here
   }
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot);
     this.route.paramMap.subscribe((params) => {
       this.siteId = +params.get('id')!;
     });
-    console.log(this.siteId);
   }
 }
