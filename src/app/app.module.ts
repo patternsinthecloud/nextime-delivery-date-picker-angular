@@ -7,10 +7,12 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SiteComponent } from 'src/app/site/site.component';
 import { FormsModule } from '@angular/forms';
 import { Site2Component } from 'src/app/site2/site2.component';
+import { DateSuffix } from 'src/app/date-suffix.pipe';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
-  declarations: [AppComponent, SiteComponent, Site2Component],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [AppComponent, SiteComponent, Site2Component, DateSuffix],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, NgxJsonViewerModule],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

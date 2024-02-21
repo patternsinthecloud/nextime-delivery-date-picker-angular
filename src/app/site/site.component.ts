@@ -1,6 +1,22 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+interface ShippingDetails {
+  date: string;
+  shippingLine: {
+    name: string;
+    nextOrderDate: string;
+    nextShippingDate: string;
+    shippingCarrier: number;
+    shippingMethod: string;
+    total: number;
+  };
+}
+
+interface CustomEvent extends Event {
+  detail: ShippingDetails;
+}
+
 interface Address {
   name?: string;
   street: string;
@@ -23,146 +39,117 @@ interface Order {
   OrderId: number;
   shippingAddress: object;
   items: Item[];
+  shippingOptionFilters: {
+    minDeliveryDate: string;
+    maxDeliveryDate: string;
+  };
 }
 
 @Component({
   selector: 'app-site',
   templateUrl: './site.component.html',
+  styleUrls: ['./site.component.css'],
 })
 export class SiteComponent {
   siteId: number | undefined;
+  returnedObject?: ShippingDetails;
+  showJson = false;
+
+  products: {
+    [number: number]: {
+      name: string;
+      image: string;
+    };
+  } = {
+    571386: {
+      name: 'Ritual Greens',
+      image: 'assets/images/image.png',
+    },
+    840998: {
+      name: 'From the Earth',
+      image: 'assets/images/image3.png',
+    },
+    840999: {
+      name: 'Revive',
+      image: 'assets/images/image4.png',
+    },
+  };
 
   addresses: Address[] = [
     {
-      name: '10 Sims Ave',
+      name: '5193 Old Post Rd',
+      street: '5193 Old Post Rd',
+      city: 'Charlestown',
+      state: 'RI',
+      postalCode: '02813',
+      country: 'US',
+    },
+    {
+      name: 'Local Pickup at Farm Fresh Sims Market',
       street: '10 Sims Ave',
-      street2: null,
       city: 'Providence',
       state: 'RI',
       postalCode: '02909',
       country: 'US',
     },
     {
-      name: '289 Buxton Street',
-
-      street: '289 Buxton Street',
-      city: 'North Smithfield',
+      name: 'Local Pickup at Wayland Winter Market',
+      street: '10 Sims Ave',
+      city: 'Providence',
       state: 'RI',
+      postalCode: '02909',
       country: 'US',
-      postalCode: '06277',
-    },
-    {
-      name: '8 Conifer Court',
-      street: '8 Conifer Court',
-      city: 'Coventry',
-      state: 'RI',
-      country: 'US',
-      postalCode: '02816',
     },
   ];
 
   orders: Order[] = [
     {
-      OrderId: 641390,
-      shippingAddress: {},
-      items: [
-        {
-          id: 986006,
-          productId: '6312',
-          qty: 1,
-          regularPrice: 31.0,
-          salePrice: 26.35,
-        },
-        {
-          id: 986007,
-          productId: '4007',
-          qty: 1,
-          regularPrice: 10.75,
-          salePrice: 9.14,
-        },
-        {
-          id: 986008,
-          productId: '505966',
-          qty: 1,
-          regularPrice: 6.0,
-          salePrice: 5.1,
-        },
-        {
-          id: 986009,
-          productId: '474162',
-          qty: 2,
-          regularPrice: 8.75,
-          salePrice: 7.44,
-        },
-      ],
-    },
-    {
-      OrderId: 245299,
+      OrderId: 1001,
       shippingAddress: {},
       items: [
         {
           id: 571386,
-          productId: '6312',
+          productId: '461150',
           qty: 1,
-          regularPrice: 31.0,
-          salePrice: 26.35,
+          regularPrice: 11.99,
+          salePrice: 11.99,
         },
         {
           id: 840998,
-          productId: '4147',
-          qty: 2,
-          regularPrice: 10.75,
-          salePrice: 9.14,
+          productId: '426480',
+          qty: 1,
+          regularPrice: 20.0,
+          salePrice: 20.0,
         },
         {
           id: 840999,
-          productId: '4007',
-          qty: 2,
-          regularPrice: 10.75,
-          salePrice: 9.14,
-        },
-        {
-          id: 891685,
-          productId: '512905',
+          productId: '4026',
           qty: 1,
-          regularPrice: 11.5,
-          salePrice: 9.77,
+          regularPrice: 10.49,
+          salePrice: 10.49,
         },
       ],
+      shippingOptionFilters: {
+        minDeliveryDate: '2024-02-20',
+        maxDeliveryDate: '2024-03-20',
+      },
     },
     {
-      OrderId: 245299,
+      OrderId: 1002,
       shippingAddress: {},
       items: [
         {
-          id: 571386,
-          productId: '6312',
-          qty: 1,
-          regularPrice: 31.0,
-          salePrice: 26.35,
-        },
-        {
-          id: 840998,
-          productId: '4147',
-          qty: 2,
-          regularPrice: 10.75,
-          salePrice: 9.14,
-        },
-        {
           id: 840999,
-          productId: '4007',
-          qty: 2,
-          regularPrice: 10.75,
-          salePrice: 9.14,
-        },
-        {
-          id: 891685,
-          productId: '512905',
+          productId: '4026',
           qty: 1,
-          regularPrice: 11.5,
-          salePrice: 9.77,
+          regularPrice: 10.49,
+          salePrice: 10.49,
         },
       ],
+      shippingOptionFilters: {
+        minDeliveryDate: '2024-02-20',
+        maxDeliveryDate: '2024-03-20',
+      },
     },
   ];
 
@@ -188,6 +175,25 @@ export class SiteComponent {
 
   updateDeliveryDate(date: string) {
     this.selectedDeliveryDate = date;
+  }
+
+  getOlderDay(date: string | undefined, olderDay: number) {
+    if (!date) return '';
+    const newDate = new Date(
+      new Date().setDate(new Date(date).getDate() - olderDay)
+    );
+    return newDate;
+  }
+
+  handleDateUpdate(evt: CustomEvent | Event) {
+    // Use a type guard to check if the event is a CustomEvent
+    if (evt instanceof CustomEvent) {
+      this.returnedObject = evt.detail;
+    }
+  }
+
+  toggleJson() {
+    this.showJson = !this.showJson;
   }
 
   constructor(private route: ActivatedRoute) {}
