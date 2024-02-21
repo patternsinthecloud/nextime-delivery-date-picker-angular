@@ -153,13 +153,7 @@ export class SiteComponent {
     },
   ];
 
-  deliveryDates = [
-    '2024-02-22',
-    '2024-02-25',
-    '2024-02-27',
-    '2024-02-28',
-    '2024-02-29',
-  ];
+  deliveryDates = ['2024-03-01', '2024-03-02'];
 
   selectedAddress: Address | undefined;
   selectedOrder: Order | undefined;
