@@ -13,7 +13,10 @@
     <div class="next-order-box">
       <p>
         Your next order will be processed on
-        <select [(ngModel)]="selectedDeliveryDate">
+        <select
+          (change)="handleSelectDeliveryChange($event)"
+          [(ngModel)]="selectedDeliveryDate"
+        >
           <option *ngFor="let date of deliveryDates" [value]="date">
             {{ date }}
           </option>
@@ -23,17 +26,17 @@
         and delivered to
         <strong>{{ selectedAddress?.street }}</strong> on
         <strong
-          >{{ selectedDeliveryDate | date : "EEEE, MMMM d"
-          }}{{ selectedDeliveryDate | date : "d" | dateSuffix }}</strong
+          >{{ selectedDeliveryDate2 | date : "EEEE, MMMM d"
+          }}{{ selectedDeliveryDate2 | date : "d" | dateSuffix }}</strong
         >
       </p>
       <p>
         Please make changes to your next order
         <strong
-          >before {{ getOlderDay(selectedDeliveryDate, 2) | date : "EEEE" }} @
+          >before {{ getOlderDay(selectedDeliveryDate2, 2) | date : "EEEE" }} @
           11:59pm</strong
         >
-        for {{ selectedDeliveryDate | date : "EEEE" }} Delivery.
+        for {{ selectedDeliveryDate2 | date : "EEEE" }} Delivery.
       </p>
     </div>
     <table>
@@ -115,7 +118,9 @@
       </div>
     </div>
     <div class="ships-to-box">
-      <h2>Delivery via <span class="underline">Home Delivery</span></h2>
+      <h2 *ngIf="selectedDelivery">
+        Delivery via <span class="underline">{{ selectedDelivery }}</span>
+      </h2>
       <p>Ships To:</p>
       <select [(ngModel)]="selectedAddress">
         <option *ngFor="let address of addresses" [ngValue]="address">
@@ -124,8 +129,10 @@
       </select>
     </div>
     <qpilot-delivery-date
-      *ngIf="selectedDeliveryDate && siteId && selectedAddress && selectedOrder"
-      [deliveryDate]="selectedDeliveryDate | json"
+      *ngIf="
+        selectedDeliveryDate2 && siteId && selectedAddress && selectedOrder
+      "
+      [deliveryDate]="selectedDeliveryDate2 | json"
       [siteId]="siteId"
       [shippingAddress]="selectedAddress | json"
       [order]="selectedOrder | json"

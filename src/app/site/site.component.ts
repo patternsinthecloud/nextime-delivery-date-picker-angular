@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 interface ShippingDetails {
   date: string;
@@ -158,17 +159,16 @@ export class SiteComponent {
   selectedAddress: Address | undefined;
   selectedOrder: Order | undefined;
   selectedDeliveryDate: string | undefined;
+  selectedDeliveryDate2: string | undefined;
+  selectedDelivery: string | undefined;
 
-  updateShippingAddress(address: string) {
-    this.selectedAddress = JSON.parse(address);
-  }
-
-  updateOrder(order: string) {
-    this.selectedOrder = JSON.parse(order);
-  }
-
-  updateDeliveryDate(date: string) {
-    this.selectedDeliveryDate = date;
+  handleSelectDeliveryChange(evt: Event) {
+    console.log((evt.target as HTMLSelectElement).value);
+    if (
+      this.selectedDeliveryDate2 !== (evt.target as HTMLSelectElement).value
+    ) {
+      this.selectedDeliveryDate2 = (evt.target as HTMLSelectElement).value;
+    }
   }
 
   getOlderDay(date: string | undefined, olderDay: number) {
@@ -180,9 +180,19 @@ export class SiteComponent {
   }
 
   handleDateUpdate(evt: CustomEvent | Event) {
-    // Use a type guard to check if the event is a CustomEvent
     if (evt instanceof CustomEvent) {
       this.returnedObject = evt.detail;
+      if (evt.detail.shippingLine?.nextOrderDate) {
+        const nextDate = evt.detail.shippingLine.nextOrderDate;
+        const newDateFormated = moment(nextDate).format('YYYY-MM-DD');
+
+        if (!this.deliveryDates.includes(newDateFormated.toString())) {
+          this.deliveryDates.push(newDateFormated);
+        }
+
+        this.selectedDeliveryDate = moment(nextDate).format('YYYY-MM-DD');
+      }
+      this.selectedDelivery = evt.detail?.shippingLine?.name;
     }
   }
 
@@ -196,5 +206,10 @@ export class SiteComponent {
     this.route.paramMap.subscribe((params) => {
       this.siteId = +params.get('id')!;
     });
+
+    this.selectedAddress = this.addresses[0];
+    this.selectedOrder = this.orders[0];
+    this.selectedDeliveryDate = this.deliveryDates[0];
+    this.selectedDeliveryDate2 = this.deliveryDates[0];
   }
 }
