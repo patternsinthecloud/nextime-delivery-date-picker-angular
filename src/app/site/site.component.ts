@@ -167,6 +167,7 @@ export class SiteComponent {
   selectedDeliveryDate: string | undefined;
   selectedDeliveryDate2: string | undefined;
   selectedDelivery: string | undefined;
+  showOrderDate: string | undefined;
 
   handleSelectDeliveryChange(evt: Event) {
     console.log((evt.target as HTMLSelectElement).value);
@@ -188,6 +189,7 @@ export class SiteComponent {
   handleDateUpdate(evt: CustomEvent | Event) {
     if (evt instanceof CustomEvent) {
       this.returnedObject = evt.detail;
+
       if (evt.detail.shippingLine?.nextOrderDate) {
         const nextDate = evt.detail.shippingLine.nextOrderDate;
         const newDateFormated = moment(nextDate).format('YYYY-MM-DD');
@@ -196,7 +198,10 @@ export class SiteComponent {
           this.deliveryDates.push(newDateFormated);
         }
 
-        this.selectedDeliveryDate = moment(nextDate).format('YYYY-MM-DD');
+        this.selectedDeliveryDate = moment(evt.detail.date).format(
+          'YYYY-MM-DD'
+        );
+        this.showOrderDate = this.selectedDeliveryDate;
       }
       this.selectedDelivery = evt.detail?.shippingLine?.name;
     }
