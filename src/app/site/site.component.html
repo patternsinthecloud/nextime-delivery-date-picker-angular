@@ -13,8 +13,11 @@
     <div class="next-order-box">
       <p>
         Your next order will be processed on
-        <select [(ngModel)]="orderDate">
-          <option *ngFor="let date of deliveryDates" [value]="date">
+        <select
+          [(ngModel)]="orderDate"
+          (change)="handleOrderDateChange($event)"
+        >
+          <option *ngFor="let date of orderDates" [value]="date">
             {{ date }}
           </option>
         </select>
@@ -124,8 +127,8 @@
       </select>
     </div>
     <qpilot-delivery-date
-      *ngIf="orderDate && siteId && selectedAddress && selectedOrder"
-      [orderDate]="orderDate | json"
+      *ngIf="selectedOrderDate && siteId && selectedAddress && selectedOrder"
+      [orderDate]="selectedOrderDate | json"
       [siteId]="siteId"
       [shippingAddress]="selectedAddress | json"
       [order]="selectedOrder | json"

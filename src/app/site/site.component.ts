@@ -154,7 +154,7 @@ export class SiteComponent {
     },
   ];
 
-  deliveryDates = [
+  orderDates = [
     '2024-02-22',
     '2024-02-25',
     '2024-02-27',
@@ -165,6 +165,7 @@ export class SiteComponent {
   selectedAddress: Address | undefined;
   selectedOrder: Order | undefined;
   orderDate: string | undefined;
+  selectedOrderDate: string | undefined;
   selectedDelivery: string | undefined;
   showOrderDate: string | undefined;
   deliveryDate: string | undefined;
@@ -188,11 +189,26 @@ export class SiteComponent {
         this.deliveryDate = undefined;
       }
       this.selectedDelivery = evt.detail?.shippingLine?.name;
+
+      if (evt.detail?.shippingLine?.nextOrderDate) {
+        const newOrderDate = moment(
+          evt.detail.shippingLine.nextOrderDate
+        ).format('YYYY-MM-DD');
+
+        if (!this.orderDates.includes(newOrderDate.toString())) {
+          this.orderDates.push(newOrderDate);
+        }
+        this.orderDate = newOrderDate;
+      }
     }
   }
 
   toggleJson() {
     this.showJson = !this.showJson;
+  }
+
+  handleOrderDateChange(event: Event) {
+    this.selectedOrderDate = (event.target as HTMLInputElement).value;
   }
 
   constructor(private route: ActivatedRoute) {}
@@ -204,6 +220,7 @@ export class SiteComponent {
 
     this.selectedAddress = this.addresses[0];
     this.selectedOrder = this.orders[0];
-    this.orderDate = this.deliveryDates[0];
+    this.orderDate = this.orderDates[0];
+    this.selectedOrderDate = this.orderDate;
   }
 }
