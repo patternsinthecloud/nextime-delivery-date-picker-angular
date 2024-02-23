@@ -13,10 +13,7 @@
     <div class="next-order-box">
       <p>
         Your next order will be processed on
-        <select
-          (change)="handleSelectDeliveryChange($event)"
-          [(ngModel)]="selectedDeliveryDate"
-        >
+        <select [(ngModel)]="orderDate">
           <option *ngFor="let date of deliveryDates" [value]="date">
             {{ date }}
           </option>
@@ -25,19 +22,12 @@
       <p>
         and delivered to
         <strong>{{ selectedAddress?.street }}</strong> on
-        <strong
-          >{{ showOrderDate | date : "EEEE, MMMM d"
-          }}{{ showOrderDate | date : "d" | dateSuffix }}</strong
+        <strong *ngIf="deliveryDate"
+          >{{ deliveryDate | date : "EEEE, MMMM d"
+          }}{{ deliveryDate | date : "d" | dateSuffix }}</strong
         >
+        <span *ngIf="!deliveryDate">no delivery date.</span>
       </p>
-      <!-- <p>
-        Please make changes to your next order
-        <strong
-          >before {{ getOlderDay(selectedDeliveryDate2, 2) | date : "EEEE" }} @
-          11:59pm</strong
-        >
-        for {{ selectedDeliveryDate2 | date : "EEEE" }} Delivery.
-      </p> -->
     </div>
     <table>
       <thead>
@@ -129,10 +119,8 @@
       </select>
     </div>
     <qpilot-delivery-date
-      *ngIf="
-        selectedDeliveryDate2 && siteId && selectedAddress && selectedOrder
-      "
-      [deliveryDate]="selectedDeliveryDate2 | json"
+      *ngIf="orderDate && siteId && selectedAddress && selectedOrder"
+      [orderDate]="orderDate | json"
       [siteId]="siteId"
       [shippingAddress]="selectedAddress | json"
       [order]="selectedOrder | json"

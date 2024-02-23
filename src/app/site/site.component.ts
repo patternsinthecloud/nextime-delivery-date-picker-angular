@@ -164,19 +164,10 @@ export class SiteComponent {
 
   selectedAddress: Address | undefined;
   selectedOrder: Order | undefined;
-  selectedDeliveryDate: string | undefined;
-  selectedDeliveryDate2: string | undefined;
+  orderDate: string | undefined;
   selectedDelivery: string | undefined;
   showOrderDate: string | undefined;
-
-  handleSelectDeliveryChange(evt: Event) {
-    console.log((evt.target as HTMLSelectElement).value);
-    if (
-      this.selectedDeliveryDate2 !== (evt.target as HTMLSelectElement).value
-    ) {
-      this.selectedDeliveryDate2 = (evt.target as HTMLSelectElement).value;
-    }
-  }
+  deliveryDate: string | undefined;
 
   getOlderDay(date: string | undefined, olderDay: number) {
     if (!date) return '';
@@ -189,19 +180,12 @@ export class SiteComponent {
   handleDateUpdate(evt: CustomEvent | Event) {
     if (evt instanceof CustomEvent) {
       this.returnedObject = evt.detail;
-
-      if (evt.detail.shippingLine?.nextOrderDate) {
-        const nextDate = evt.detail.shippingLine.nextOrderDate;
-        const newDateFormated = moment(nextDate).format('YYYY-MM-DD');
-
-        if (!this.deliveryDates.includes(newDateFormated.toString())) {
-          this.deliveryDates.push(newDateFormated);
-        }
-
-        this.selectedDeliveryDate = moment(evt.detail.date).format(
+      if (evt.detail.deliveryDate) {
+        this.deliveryDate = moment(evt.detail.deliveryDate).format(
           'YYYY-MM-DD'
         );
-        this.showOrderDate = this.selectedDeliveryDate;
+      } else {
+        this.deliveryDate = undefined;
       }
       this.selectedDelivery = evt.detail?.shippingLine?.name;
     }
@@ -220,7 +204,6 @@ export class SiteComponent {
 
     this.selectedAddress = this.addresses[0];
     this.selectedOrder = this.orders[0];
-    this.selectedDeliveryDate = this.deliveryDates[0];
-    this.selectedDeliveryDate2 = this.deliveryDates[0];
+    this.orderDate = this.deliveryDates[0];
   }
 }
