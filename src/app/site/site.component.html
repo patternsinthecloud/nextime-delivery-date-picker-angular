@@ -28,6 +28,14 @@
         >
         <span *ngIf="!deliveryDate">no delivery date.</span>
       </p>
+      <p *ngIf="deliveryDate">
+        Please make changes to your next order
+        <strong
+          >before {{ getOlderDay(deliveryDate, 1) | date : "EEEE" }} @
+          11:59pm</strong
+        >
+        for {{ deliveryDate | date : "EEEE" }} Delivery.
+      </p>
     </div>
     <table>
       <thead>
