@@ -139,3 +139,22 @@ select {
   margin-bottom: 30px;
   margin-left: 40px;
 }
+
+.total {
+  background: #f3f4f6;
+  padding: 15px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.total-thin {
+  font-weight: 400;
+}

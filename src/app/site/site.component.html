@@ -83,6 +83,25 @@
         </tr>
       </tbody>
     </table>
+    <div class="total" *ngIf="returnedObject?.shippingLine">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <span>$9.14</span>
+      </div>
+      <div class="total-row">
+        <span
+          >Shipping
+          <span class="total-thin"
+            >({{ returnedObject?.shippingLine?.name }})</span
+          ></span
+        >
+        <span>${{ returnedObject?.shippingLine?.total }}</span>
+      </div>
+      <div class="total-row">
+        <span>Total</span>
+        <span>${{ (returnedObject?.shippingLine?.total || 0) + 9.14 }}</span>
+      </div>
+    </div>
   </div>
   <div class="widgets">
     <div class="skip-box">Skip 1 Week</div>
