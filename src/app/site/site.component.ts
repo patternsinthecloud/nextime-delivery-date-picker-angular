@@ -169,11 +169,11 @@ export class SiteComponent {
   showOrderDate: string | undefined;
   deliveryDate: string | undefined;
 
-  getOlderDay(date: string | undefined, olderDay: number) {
+  getOlderDay(date: string | undefined) {
     if (!date) return '';
-    const newDate = new Date(
-      new Date().setDate(new Date(date).getDate() - olderDay)
-    );
+
+    const newDate = moment(date).subtract(1, 'd').format('dddd');
+
     return newDate;
   }
 
