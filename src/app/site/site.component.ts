@@ -173,7 +173,7 @@ export class SiteComponent {
   getOlderDay(date: string | undefined) {
     if (!date) return '';
 
-    const newDate = moment(date).subtract(1, 'd').format('dddd');
+    const newDate = moment.utc(date).subtract(1, 'd').format('dddd');
 
     return newDate;
   }
@@ -182,18 +182,18 @@ export class SiteComponent {
     if (evt instanceof CustomEvent) {
       this.returnedObject = evt.detail;
       if (evt.detail.deliveryDate) {
-        this.deliveryDate = moment(evt.detail.deliveryDate).format(
-          'YYYY-MM-DD'
-        );
+        this.deliveryDate = moment
+          .utc(evt.detail.deliveryDate)
+          .format('YYYY-MM-DD');
       } else {
         this.deliveryDate = undefined;
       }
       this.selectedDelivery = evt.detail?.shippingLine?.name;
 
       if (evt.detail?.shippingLine?.nextOrderDate) {
-        const newOrderDate = moment(
-          evt.detail.shippingLine.nextOrderDate
-        ).format('YYYY-MM-DD');
+        const newOrderDate = moment
+          .utc(evt.detail.shippingLine.nextOrderDate)
+          .format('YYYY-MM-DD');
 
         if (!this.orderDates.includes(newOrderDate.toString())) {
           this.orderDates.push(newOrderDate);
