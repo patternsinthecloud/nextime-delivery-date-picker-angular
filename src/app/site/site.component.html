@@ -3,7 +3,7 @@
     My Subscription Box:
     <select *ngIf="siteId" [(ngModel)]="selectedOrder">
       <option *ngFor="let order of mockData[siteId].orders" [ngValue]="order">
-        {{ order.OrderId }}
+        {{ order.orderId }}
       </option>
     </select>
   </h1>
@@ -64,13 +64,10 @@
 
         <tr *ngFor="let order of selectedOrder?.items">
           <td>
-            <img
-              style="width: 120px; height: 120px"
-              [src]="products[order.id].image"
-            />
+            <img style="width: 120px; height: 120px" [src]="order.imageUrl" />
           </td>
           <td>
-            <p>{{ products[order.id].name }}</p>
+            <p>{{ order.title }}</p>
           </td>
           <td>
             {{ order.qty }}
@@ -85,9 +82,9 @@
       </tbody>
     </table>
     <div class="total" *ngIf="returnedObject?.shippingLine">
-      <div class="total-row">
+      <div *ngIf="this.selectedOrder" class="total-row">
         <span>Subtotal</span>
-        <span>$9.14</span>
+        <span>{{ getTotal() | currency : "USD" : "symbol" : "1.2-2" }}</span>
       </div>
       <div class="total-row">
         <span
@@ -96,11 +93,20 @@
             >({{ returnedObject?.shippingLine?.name }})</span
           ></span
         >
-        <span>${{ returnedObject?.shippingLine?.total }}</span>
+        <span>{{
+          returnedObject?.shippingLine?.total
+            | currency : "USD" : "symbol" : "1.2-2"
+        }}</span>
       </div>
-      <div class="total-row">
+      <div
+        *ngIf="returnedObject?.shippingLine as shippingLine"
+        class="total-row"
+      >
         <span>Total</span>
-        <span>${{ (returnedObject?.shippingLine?.total || 0) + 9.14 }}</span>
+        <span>{{
+          shippingLine.total + getTotal()
+            | currency : "USD" : "symbol" : "1.2-2"
+        }}</span>
       </div>
     </div>
   </div>

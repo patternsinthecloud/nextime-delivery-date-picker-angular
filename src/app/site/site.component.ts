@@ -34,16 +34,14 @@ interface Item {
   qty: number;
   regularPrice: number;
   salePrice: number;
+  imageUrl: string;
+  description: string;
+  title: string;
 }
 
 interface Order {
-  OrderId: number;
-  shippingAddress: object;
+  orderId: string;
   items: Item[];
-  shippingOptionFilters: {
-    minDeliveryDate?: string;
-    maxDeliveryDate?: string;
-  };
 }
 
 interface shippingData {
@@ -95,8 +93,7 @@ export class SiteComponent {
       ],
       orders: [
         {
-          OrderId: 1001,
-          shippingAddress: {},
+          orderId: '1001',
           items: [
             {
               id: 571386,
@@ -104,6 +101,9 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 11.99,
               salePrice: 11.99,
+              imageUrl: 'assets/images/image3.png',
+              title: 'Ritual Greens',
+              description: 'Ritual Greens',
             },
             {
               id: 840998,
@@ -111,6 +111,9 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 20.0,
               salePrice: 20.0,
+              imageUrl: 'assets/images/image2.png',
+              title: 'Ritual Greens 2',
+              description: 'Ritual Greens 2',
             },
             {
               id: 840999,
@@ -118,16 +121,14 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 10.49,
               salePrice: 10.49,
+              imageUrl: 'assets/images/image.png',
+              title: 'Ritual Greens 3',
+              description: 'Ritual Greens',
             },
           ],
-          shippingOptionFilters: {
-            minDeliveryDate: '2024-02-20',
-            maxDeliveryDate: '2024-03-20',
-          },
         },
         {
-          OrderId: 1002,
-          shippingAddress: {},
+          orderId: '1002',
           items: [
             {
               id: 840999,
@@ -135,12 +136,11 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 10.49,
               salePrice: 10.49,
+              imageUrl: 'assets/images/image3.png',
+              title: 'Ritual  Green',
+              description: 'Ritual Greens',
             },
           ],
-          shippingOptionFilters: {
-            minDeliveryDate: '2024-02-20',
-            maxDeliveryDate: '2024-03-20',
-          },
         },
       ],
     },
@@ -152,13 +152,12 @@ export class SiteComponent {
           state: 'TX',
           country: 'US',
           postalCode: '78704',
-          name: 'Lamar Blvd',
+          name: '2108 S Lamar Blvd',
         },
       ],
       orders: [
         {
-          OrderId: 641390,
-          shippingAddress: {},
+          orderId: '2002',
           items: [
             {
               id: 773779,
@@ -166,126 +165,54 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 81.0,
               salePrice: 76.95,
+              imageUrl: 'assets/images/image5.png',
+              title: 'BAMBOO Eau de Parfum 1 oz.',
+              description:
+                "Strong and graceful, one of GUCCI's most recognizable design signatures has defined references in today's GUCCI woman.",
             },
             {
               id: 946054,
               productId: '11015',
               qty: 1,
-              regularPrice: 13.99,
-              salePrice: 13.29,
+              regularPrice: 27.55,
+              salePrice: 27.55,
+              imageUrl: 'assets/images/image6.png',
+              title: 'Le Labo Shampoo 8.5 oz',
+              description:
+                'A thick, rich, deeply nourishing shampoo. This plant-based formula is made with macadamia to repair.',
             },
           ],
-          shippingOptionFilters: {},
+        },
+        {
+          orderId: '2001',
+          items: [
+            {
+              id: 804091,
+              productId: '11042',
+              qty: 1,
+              regularPrice: 29.0,
+              salePrice: 29.0,
+              imageUrl: 'assets/images/image7.png',
+              title: 'It Cosmetics Confidence in a Cleanser',
+              description:
+                'Suitable for all skin types, this is a revolutionary one-step, hydrating cleanser that melts away dirt, oil, and makeup.',
+            },
+            {
+              id: 1029226,
+              productId: '11048',
+              qty: 1,
+              regularPrice: 39.0,
+              salePrice: 36.0,
+              imageUrl: 'assets/images/image8.png',
+              title: 'Anti-Aging Cleansing Gel 8.5 oz',
+              description:
+                'Helps to effectively detoxify the pores. Oil free and anti wrinkle technology.',
+            },
+          ],
         },
       ],
     },
   };
-
-  products: {
-    [number: number]: {
-      name: string;
-      image: string;
-    };
-  } = {
-    571386: {
-      name: 'Ritual Greens',
-      image: 'assets/images/image.png',
-    },
-    840998: {
-      name: 'From the Earth',
-      image: 'assets/images/image3.png',
-    },
-    840999: {
-      name: 'Revive',
-      image: 'assets/images/image4.png',
-    },
-    946054: {
-      name: 'From the Earth',
-      image: 'assets/images/image3.png',
-    },
-    773779: {
-      name: 'Revive',
-      image: 'assets/images/image4.png',
-    },
-  };
-
-  addresses: Address[] = [
-    {
-      name: '5193 Old Post Rd',
-      street: '5193 Old Post Rd',
-      city: 'Charlestown',
-      state: 'RI',
-      postalCode: '02813',
-      country: 'US',
-    },
-    {
-      name: 'Local Pickup at Farm Fresh Sims Market',
-      street: '10 Sims Ave',
-      city: 'Providence',
-      state: 'RI',
-      postalCode: '02909',
-      country: 'US',
-    },
-    {
-      name: 'Local Pickup at Wayland Winter Market',
-      street: '10 Sims Ave',
-      city: 'Providence',
-      state: 'RI',
-      postalCode: '02909',
-      country: 'US',
-    },
-  ];
-
-  orders: Order[] = [
-    {
-      OrderId: 1001,
-      shippingAddress: {},
-      items: [
-        {
-          id: 571386,
-          productId: '461150',
-          qty: 1,
-          regularPrice: 11.99,
-          salePrice: 11.99,
-        },
-        {
-          id: 840998,
-          productId: '426480',
-          qty: 1,
-          regularPrice: 20.0,
-          salePrice: 20.0,
-        },
-        {
-          id: 840999,
-          productId: '4026',
-          qty: 1,
-          regularPrice: 10.49,
-          salePrice: 10.49,
-        },
-      ],
-      shippingOptionFilters: {
-        minDeliveryDate: '2024-02-20',
-        maxDeliveryDate: '2024-03-20',
-      },
-    },
-    {
-      OrderId: 1002,
-      shippingAddress: {},
-      items: [
-        {
-          id: 840999,
-          productId: '4026',
-          qty: 1,
-          regularPrice: 10.49,
-          salePrice: 10.49,
-        },
-      ],
-      shippingOptionFilters: {
-        minDeliveryDate: '2024-02-20',
-        maxDeliveryDate: '2024-03-20',
-      },
-    },
-  ];
 
   orderDates = [
     '2024-02-22',
@@ -342,6 +269,12 @@ export class SiteComponent {
 
   handleOrderDateChange(event: Event) {
     this.selectedOrderDate = (event.target as HTMLInputElement).value;
+  }
+
+  getTotal(): number {
+    return this.selectedOrder
+      ? this.selectedOrder.items.reduce((a, b) => a + b.regularPrice * b.qty, 0)
+      : 0;
   }
 
   constructor(private route: ActivatedRoute) {}
