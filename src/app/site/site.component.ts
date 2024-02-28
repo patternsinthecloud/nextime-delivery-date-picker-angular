@@ -65,7 +65,7 @@ export class SiteComponent {
     8: {
       addresses: [
         {
-          name: '10 Sims Ave',
+          name: 'Local Pickup at Farm Fresh Sims Market',
           street: '10 Sims Ave',
           street2: null,
           city: 'Providence',
@@ -74,20 +74,20 @@ export class SiteComponent {
           country: 'US',
         },
         {
-          name: '289 Buxton Street',
-          street: '289 Buxton Street',
-          city: 'North Smithfield',
+          name: '5193 Old Post Rd',
+          street: '5193 Old Post Rd',
+          city: 'Charlestown',
           state: 'RI',
           country: 'US',
           postalCode: '06277',
         },
         {
-          name: '8 Conifer Court',
-          street: '8 Conifer Court',
-          city: 'Coventry',
-          state: 'RI',
+          name: 'Local Pickup at Wayland Winter Market',
+          street: '397 Boston Post Rd',
+          city: 'Wayland',
+          state: 'MA',
           country: 'US',
-          postalCode: '02816',
+          postalCode: '02813',
         },
       ],
       orders: [
