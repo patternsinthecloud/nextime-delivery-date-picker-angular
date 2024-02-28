@@ -75,7 +75,6 @@ export class SiteComponent {
         },
         {
           name: '289 Buxton Street',
-
           street: '289 Buxton Street',
           city: 'North Smithfield',
           state: 'RI',
