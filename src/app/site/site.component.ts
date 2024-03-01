@@ -164,7 +164,7 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 81.0,
               salePrice: 76.95,
-              imageUrl: 'assets/images/image5.png',
+              imageUrl: 'assets/images/image6.png',
               title: 'BAMBOO Eau de Parfum 1 oz.',
               description:
                 "Strong and graceful, one of GUCCI's most recognizable design signatures has defined references in today's GUCCI woman.",
@@ -175,7 +175,7 @@ export class SiteComponent {
               qty: 1,
               regularPrice: 27.55,
               salePrice: 27.55,
-              imageUrl: 'assets/images/image6.png',
+              imageUrl: 'assets/images/image5.png',
               title: 'Le Labo Shampoo 8.5 oz',
               description:
                 'A thick, rich, deeply nourishing shampoo. This plant-based formula is made with macadamia to repair.',
