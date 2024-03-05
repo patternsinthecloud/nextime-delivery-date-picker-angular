@@ -62,7 +62,7 @@ export class SiteComponent {
   showJson = false;
 
   mockData: shippingData = {
-    8: {
+    1: {
       addresses: [
         {
           name: 'Local Pickup at Farm Fresh Sims Market',
@@ -143,7 +143,7 @@ export class SiteComponent {
         },
       ],
     },
-    4: {
+    3: {
       addresses: [
         {
           street: '2108 S Lamar Blvd',

@@ -6,7 +6,7 @@ import { Site2Component } from 'src/app/site2/site2.component';
 const routes: Routes = [
   { path: 'site2/:id', component: Site2Component },
   { path: 'site/:id', component: SiteComponent },
-  { path: '', redirectTo: '/site/8', pathMatch: 'full' },
+  { path: '', redirectTo: '/site/1', pathMatch: 'full' },
 ];
 
 @NgModule({
