@@ -21,11 +21,13 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: AzureFileCopy@6
+- task: AzureCLI@2
   inputs:
-    SourcePath: './dist/qpilot-delivery-date-angular'
-    azureSubscription: 'Production Azure Subscription - PIC(61443faf-a8ba-460f-8344-dabe49fe1c6d)'
-    Destination: 'AzureBlob'
-    storage: 'nextimedemos'
-    ContainerName: '$web'
-    CleanTargetBeforeCopy: true
+    azureSubscription: 'Production Azure Subscription - PIC(1)(61443faf-a8ba-460f-8344-dabe49fe1c6d)'
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+        az storage blob upload-batch \
+          --destination \$web \
+          --account-name "nextimedemos" \
+          --source "$(Agent.BuildDirectory)/dest"
